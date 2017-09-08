@@ -18,20 +18,26 @@
 </head>
 <body>
 
-    <h2>Interval Timer with Defaults</h2>
-    <div class="simple-interval-timer-container"></div>
+<h2>Interval Timer with Defaults</h2>
+<div class="simple-interval-timer-container"></div>
 
-    <h2>Custom Timer</h2>
-    <div class="insert-timer-here"></div>
+<h2>Custom Timer</h2>
+<div class="insert-custom-timer-here"></div>
 
-</body>
 <script src="./simple-interval-timer.min.js" charset="utf-8"></script>
 <script>
     (function() {
-        simpleIntervalTimer(); // DEFAULT VALUES USED
+        // DEFAULT VALUES USED WHEN SETTING NOT SPECIFIED
+        // containerClass: "simple-interval-timer-container"
+        // prepareSeconds: 10
+        // workSeconds: 30
+        // restSeconds: 15
+        // editable: true
+        simpleIntervalTimer();
 
+        // CUSTOM VALUES SPECIFIED
         simpleIntervalTimer({
-            containerClass: "insert-timer-here",
+            containerClass: "insert-custom-timer-here",
             workSeconds: 15,
             restSeconds: 5,
             editable: false,
@@ -39,4 +45,5 @@
         });
     })();
 </script>
+</body>
 </html>

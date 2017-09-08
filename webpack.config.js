@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ZipPlugin = require('zip-webpack-plugin');
 
 module.exports = {
   entry: './js/simple-interval-timer.js',
@@ -33,6 +34,10 @@ module.exports = {
      {from: './demo.html'},
      {from: './simple-interval-timer.css'},
      {from: './images/*'}
-   ])
+   ]),
+   new ZipPlugin({
+      path: '../',
+      filename: 'simple-interval-timer.zip',
+    }),
   ]
 };
