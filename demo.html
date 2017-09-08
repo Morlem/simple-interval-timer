@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>simple-interval-timer demo</title>
+    <style media="screen">
+        body {
+            margin: 0;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+        }
+        h2 {
+            margin: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="./simple-interval-timer.css">
+</head>
+<body>
+
+    <h2>Interval Timer with Defaults</h2>
+    <div class="simple-interval-timer-container"></div>
+
+    <h2>Custom Timer</h2>
+    <div class="insert-timer-here"></div>
+
+</body>
+<script src="./simple-interval-timer.min.js" charset="utf-8"></script>
+<script>
+    (function() {
+        simpleIntervalTimer(); // DEFAULT VALUES USED
+
+        simpleIntervalTimer({
+            containerClass: "insert-timer-here",
+            workSeconds: 15,
+            restSeconds: 5,
+            editable: false,
+            prepareSeconds: 5,
+        });
+    })();
+</script>
+</html>

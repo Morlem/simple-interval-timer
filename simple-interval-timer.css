@@ -1,0 +1,118 @@
+.simple-interval-timer {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+}
+
+.simple-interval-timer--stopped { display: none; }
+.simple-interval-timer--running { display: flex; }
+.simple-interval-timer.stopped .simple-interval-timer--stopped {
+    display: flex;
+}
+.simple-interval-timer.stopped .simple-interval-timer--running {
+    display: none;
+}
+
+.simple-interval-timer--stopped,
+.simple-interval-timer--running {
+    box-sizing: border-box;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    height: 50px;
+}
+
+/* STYLES FOR SETUP / STOPPED STATE */
+.simple-interval-timer--stopped {
+    background-color: #333333;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.simple-interval-timer__value {
+    width: 74px;
+    height: 100%;
+    position: relative;
+}
+.simple-interval-timer__value:first-child {
+    margin-right: 12px;
+}
+.simple-interval-timer__value label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+    color: #000;
+    z-index: 1;
+}
+.simple-interval-timer__value input {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+    color: #333;
+    padding-bottom: 14px;
+}
+.simple-interval-timer__value input[type='number']::-webkit-inner-spin-button,
+.simple-interval-timer__value input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.simple-interval-timer__play {
+    flex-grow: 1;
+    background: #7FD000 url("./images/icon-play.svg") no-repeat center;
+    margin-left: 20px;
+}
+
+/* STYLES FOR PREPARING / WORKING / RESTING STATES */
+.simple-interval-timer--running {
+    color: #FFFFFF;
+    line-height: 46px;
+}
+.simple-interval-timer.preparing .simple-interval-timer--running {
+    background-color: #8C9978;
+}
+.simple-interval-timer.working .simple-interval-timer--running {
+    background-color: #7FD000;
+}
+.simple-interval-timer.resting .simple-interval-timer--running {
+    background-color: #21ABF6;
+}
+.simple-interval-timer__stop {
+    background: url("./images/icon-stop.svg") no-repeat center;
+    width: 48px;
+    border-right: 1px solid #333;
+}
+.simple-interval-timer__status {
+    font-weight: 300;
+    font-size: 32px;
+    padding-left: 20px;
+}
+.simple-interval-timer__timer {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 44px;
+    font-weight: 700;
+}
+@keyframes TIMER-PAUSED {
+  0%    { opacity: 1; }
+  33.3% { opacity: 0; }
+  66.6% { opacity: 1; }
+  100%  { opacity: 1; }
+}
+.simple-interval-timer__timer.paused {
+    animation: TIMER-PAUSED 1.2s infinite;
+}
+
+.simple-interval-timer__pause {
+    background: url("./images/icon-pause.svg") no-repeat center;
+    width: 48px;
+    margin-left: 20px;
+}

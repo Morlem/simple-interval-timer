@@ -1,0 +1,27 @@
+<div class="simple-interval-timer stopped">
+
+    <div class="simple-interval-timer--stopped">
+        <div class="simple-interval-timer__value">
+            <label for="workSeconds">WORK</label>
+            <input
+                id="workSeconds" class="workSeconds" type="number" min="1" step="1"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+            />
+        </div>
+        <div class="simple-interval-timer__value">
+            <label for="restSeconds">REST</label>
+            <input
+                id="restSeconds" class="restSeconds" type="number" min="1" step="1"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+            />
+        </div>
+        <div class="simple-interval-timer__play"></div>
+    </div>
+
+    <div class="simple-interval-timer--running">
+        <div class="simple-interval-timer__stop"></div>
+        <div class="simple-interval-timer__status">PREPARE</div>
+        <div class="simple-interval-timer__timer">10</div>
+        <div class="simple-interval-timer__pause"></div>
+    </div>
+</div>
