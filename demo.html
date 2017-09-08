@@ -27,21 +27,25 @@
 <script src="./simple-interval-timer.min.js" charset="utf-8"></script>
 <script>
     (function() {
+        simpleIntervalTimer();
         // DEFAULT VALUES USED WHEN SETTING NOT SPECIFIED
         // containerClass: "simple-interval-timer-container"
         // prepareSeconds: 10
         // workSeconds: 30
         // restSeconds: 15
+        // rewindSeconds: 10
         // editable: true
-        simpleIntervalTimer();
+        // showStopButton: true
 
         // CUSTOM VALUES SPECIFIED
         simpleIntervalTimer({
             containerClass: "insert-custom-timer-here",
-            workSeconds: 15,
+            prepareSeconds: 0,
+            workSeconds: 10,
             restSeconds: 5,
+            rewindSeconds: 5,
             editable: false,
-            prepareSeconds: 5,
+            showStopButton: false,
         });
     })();
 </script>

@@ -46,6 +46,7 @@
     z-index: 1;
 }
 .simple-interval-timer__value input {
+    border: none;
     box-sizing: border-box;
     position: absolute;
     left: 0;
@@ -59,6 +60,9 @@
     font-size: 24px;
     color: #333;
     padding-bottom: 14px;
+}
+.simple-interval-timer__value input:read-only {
+    background-color: #f2f2f2;
 }
 .simple-interval-timer__value input[type='number']::-webkit-inner-spin-button,
 .simple-interval-timer__value input[type='number']::-webkit-outer-spin-button {
@@ -77,7 +81,7 @@
     line-height: 46px;
 }
 .simple-interval-timer.preparing .simple-interval-timer--running {
-    background-color: #8C9978;
+    background-color: #333;
 }
 .simple-interval-timer.working .simple-interval-timer--running {
     background-color: #7FD000;
@@ -87,13 +91,24 @@
 }
 .simple-interval-timer__stop {
     background: url("./images/icon-stop.svg") no-repeat center;
-    width: 48px;
-    border-right: 1px solid #333;
+    min-width: 48px;
+}
+.simple-interval-timer__rewind {
+    background: url("./images/icon-rewind.svg") no-repeat 2px center;
+    min-width: 46px;
+}
+.simple-interval-timer--running.no-stop .simple-interval-timer__stop {
+    display: none;
+}
+.simple-interval-timer--running.no-stop .simple-interval-timer__rewind {
+    background: url("./images/icon-rewind.svg") no-repeat 8px center;
 }
 .simple-interval-timer__status {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 4px;
     font-weight: 300;
     font-size: 32px;
-    padding-left: 20px;
 }
 .simple-interval-timer__timer {
     flex-grow: 1;
@@ -113,6 +128,6 @@
 
 .simple-interval-timer__pause {
     background: url("./images/icon-pause.svg") no-repeat center;
-    width: 48px;
+    min-width: 48px;
     margin-left: 20px;
 }

@@ -10,6 +10,7 @@
             font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
             font-weight: 300;
         }
+        h1 { font-size: 40px;}
         section {
             margin: 20px;
         }
@@ -23,7 +24,17 @@
 <body>
 
 <section>
-<h2>Interval Timer with Defaults</h2>
+<h1>Simple-Interval-Timer</h1>
+<ul>
+    <li>Responsive interval timer you can add to any web page</li>
+    <li>Customizable prepare, work, and rest times</li>
+    <li>Additional settings (see <a href="#custom">customized timer</a> below)</li>
+</ul>
+<h1>Download</h1>
+<h2><strong><a href="./simple-interval-timer.zip">simple-interval-timer.zip</a></strong></h2>
+<p>GitHub for source: <a href="https://github.com/Morlem/simple-interval-timer">https://github.com/Morlem/simple-interval-timer</a></p>
+<h1>Demos</h1>
+<h2>Interval Timer with Default Settings</h2>
 </section>
 <div class="simple-interval-timer-container"></div>
 <section>
@@ -41,12 +52,14 @@
     &lt;script src="PATH-TO-SCRIPT/simple-interval-timer.min.js" charset="utf-8"&gt;&lt;/script&gt;
     &lt;script&gt;
         (function() {
-            // DEFAULT VALUES USED WHEN SETTINGS NOT SPECIFIED
+            // DEFAULT VALUES USED WHEN SETTING NOT SPECIFIED
             // containerClass: "simple-interval-timer-container"
             // prepareSeconds: 10
             // workSeconds: 30
             // restSeconds: 15
+            // rewindSeconds: 10
             // editable: true
+            // showStopButton: true
             simpleIntervalTimer();
         })();
     &lt;/script&gt;
@@ -55,10 +68,10 @@
 </pre>
 </section>
 
-<div class="spacer" style="height:60px;"></div>
+<div class="spacer" style="height:40px;"></div>
 
 <section>
-<h2>Custom Timer</h2>
+<h2 id="custom">Customized Timer</h2>
 </section>
 <div class="insert-custom-timer-here"></div>
 <section>
@@ -78,10 +91,12 @@
         (function() {
             simpleIntervalTimer({
                 containerClass: "insert-custom-timer-here",
-                workSeconds: 15,
+                prepareSeconds: 0,
+                workSeconds: 10,
                 restSeconds: 5,
+                rewindSeconds: 5,
                 editable: false,
-                prepareSeconds: 5,
+                showStopButton: false,
             });
         })();
     &lt;/script&gt;
@@ -94,21 +109,25 @@
 <script src="./simple-interval-timer.min.js" charset="utf-8"></script>
 <script>
     (function() {
-        // DEFAULT VALUES USED WHEN SETTINGS NOT SPECIFIED
+        simpleIntervalTimer();
+        // DEFAULT VALUES USED WHEN SETTING NOT SPECIFIED
         // containerClass: "simple-interval-timer-container"
         // prepareSeconds: 10
         // workSeconds: 30
         // restSeconds: 15
+        // rewindSeconds: 10
         // editable: true
-        simpleIntervalTimer();
+        // showStopButton: true
 
         // CUSTOM VALUES SPECIFIED
         simpleIntervalTimer({
             containerClass: "insert-custom-timer-here",
-            workSeconds: 15,
+            prepareSeconds: 0,
+            workSeconds: 10,
             restSeconds: 5,
+            rewindSeconds: 5,
             editable: false,
-            prepareSeconds: 5,
+            showStopButton: false,
         });
     })();
 </script>

@@ -10,7 +10,9 @@ window.simpleIntervalTimer = ( settings={} ) => {
   const containerClass = settings.containerClass || "simple-interval-timer-container";
   let workSeconds = settings.workSeconds || 30;
   let restSeconds = settings.restSeconds || 15;
+  let rewindSeconds = settings.rewindSeconds || 10;
   const editable = !(settings.editable === false);
+  const showStopButton = !(settings.showStopButton === false);
   const prepareSeconds = Number.isInteger(settings.prepareSeconds) ? settings.prepareSeconds : 10;
 
   // SETUP & GET DOM NODES
@@ -21,6 +23,7 @@ window.simpleIntervalTimer = ( settings={} ) => {
   const workInputEl = parentEl.getElementsByClassName('workSeconds')[0];
   const restInputEl = parentEl.getElementsByClassName('restSeconds')[0];
   const stopEl = parentEl.getElementsByClassName('simple-interval-timer__stop')[0];
+  const rewindEl = parentEl.getElementsByClassName('simple-interval-timer__rewind')[0];
   const statusEl = parentEl.getElementsByClassName('simple-interval-timer__status')[0];
   const timeEl = parentEl.getElementsByClassName('simple-interval-timer__timer')[0];
   const runningEl = parentEl.getElementsByClassName('simple-interval-timer--running')[0];
@@ -54,17 +57,32 @@ window.simpleIntervalTimer = ( settings={} ) => {
     interval = setInterval(handleInterval, 1000);
   })
 
-  stopEl.addEventListener("click", (e)=>{
+  if (showStopButton) {
+    stopEl.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      state = "stopped";
+      timeEl.classList.remove('paused');
+      parentEl.classList.remove('preparing');
+      parentEl.classList.remove('working');
+      parentEl.classList.remove('resting');
+      parentEl.classList.add('stopped');
+      clearInterval(interval);
+      interval = null;
+    })
+  } else {
+    runningEl.classList.add('no-stop');
+  }
+
+  rewindEl.addEventListener("click", (e)=>{
     e.stopPropagation();
-    state = "stopped";
-    timeEl.classList.remove('paused');
-    parentEl.classList.remove('preparing');
-    parentEl.classList.remove('working');
-    parentEl.classList.remove('resting');
-    parentEl.classList.add('stopped');
+    timer = timer + rewindSeconds;
+    if (state==="working") { timer = Math.min(timer, workSeconds); }
+    if (state==="resting") { timer = Math.min(timer, restSeconds); }
+    timeEl.innerText = timer;
     clearInterval(interval);
-    interval = null;
+    interval = setInterval(handleInterval, 1000);
   })
+
 
   runningEl.addEventListener("click", ()=>{
     if (interval) {
