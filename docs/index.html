@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>simple-interval-timer demo</title>
+    <style media="screen">
+        body {
+            margin: 0;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+        }
+        section {
+            margin: 20px;
+        }
+        pre {
+            font-size: 14px;
+        }
+    </style>
+    <link rel="stylesheet" href="./prism.css">
+    <link rel="stylesheet" href="./simple-interval-timer.css">
+</head>
+<body>
+
+<section>
+<h2>Interval Timer with Defaults</h2>
+</section>
+<div class="simple-interval-timer-container"></div>
+<section>
+<pre class=" language-markup">
+<code class=" language-markup">
+&lt;head&gt;
+    ...
+    ...
+    &lt;link rel="stylesheet" href="PATH-TO-CSS/simple-interval-timer.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="simple-interval-timer-container">&lt;/div&gt;
+    ...
+    ...
+    &lt;script src="PATH-TO-SCRIPT/simple-interval-timer.min.js" charset="utf-8"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        (function() {
+            // DEFAULT VALUES USED WHEN SETTINGS NOT SPECIFIED
+            // containerClass: "simple-interval-timer-container"
+            // prepareSeconds: 10
+            // workSeconds: 30
+            // restSeconds: 15
+            // editable: true
+            simpleIntervalTimer();
+        })();
+    &lt;/script&gt;
+&lt;/body&gt;
+</code>
+</pre>
+</section>
+
+<div class="spacer" style="height:60px;"></div>
+
+<section>
+<h2>Custom Timer</h2>
+</section>
+<div class="insert-custom-timer-here"></div>
+<section>
+<pre class=" language-markup">
+<code class=" language-markup">
+&lt;head&gt;
+    ...
+    ...
+    &lt;link rel="stylesheet" href="PATH-TO-CSS/simple-interval-timer.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="insert-custom-timer-here">&lt;/div&gt;
+    ...
+    ...
+    &lt;script src="PATH-TO-SCRIPT/simple-interval-timer.min.js" charset="utf-8"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        (function() {
+            simpleIntervalTimer({
+                containerClass: "insert-custom-timer-here",
+                workSeconds: 15,
+                restSeconds: 5,
+                editable: false,
+                prepareSeconds: 5,
+            });
+        })();
+    &lt;/script&gt;
+&lt;/body&gt;
+</code>
+</pre>
+</section>
+
+<script src="./prism.js" charset="utf-8"></script>
+<script src="./simple-interval-timer.min.js" charset="utf-8"></script>
+<script>
+    (function() {
+        // DEFAULT VALUES USED WHEN SETTINGS NOT SPECIFIED
+        // containerClass: "simple-interval-timer-container"
+        // prepareSeconds: 10
+        // workSeconds: 30
+        // restSeconds: 15
+        // editable: true
+        simpleIntervalTimer();
+
+        // CUSTOM VALUES SPECIFIED
+        simpleIntervalTimer({
+            containerClass: "insert-custom-timer-here",
+            workSeconds: 15,
+            restSeconds: 5,
+            editable: false,
+            prepareSeconds: 5,
+        });
+    })();
+</script>
+</body>
+</html>
