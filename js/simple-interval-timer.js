@@ -1,11 +1,19 @@
 import WebFont from 'webfontloader';
+import {Howl} from 'howler';
 import timerHTML from '../html/timer.html';
-
 
 window.simpleIntervalTimer = ( settings={} ) => {
   WebFont.load({
     google: { families: ['Roboto:300,700'] }
   });
+
+  let sounds = new Howl({
+  src: [require('../audio/sounds.mp3')],
+  sprite: {
+    countdownSound: [30, 142],
+    doneSound: [209, 509]
+  }
+});
 
   // SETUP SETTINGS OR USE DEFAULTS
   const containerClass = settings.containerClass || "simple-interval-timer-container";
@@ -16,9 +24,6 @@ window.simpleIntervalTimer = ( settings={} ) => {
   const playSounds = !(settings.playSounds === false);
   const showStopButton = !(settings.showStopButton === false);
   const prepareSeconds = Number.isInteger(settings.prepareSeconds) ? settings.prepareSeconds : 10;
-
-  const countdownSound = new Audio([require('../audio/blip.mp3')]);
-  const doneSound = new Audio([require('../audio/bip-bip-bip.mp3')]);
 
   // SETUP & GET DOM NODES
   let parentEl = document.getElementsByClassName(containerClass)[0];
@@ -43,6 +48,7 @@ window.simpleIntervalTimer = ( settings={} ) => {
 
   // INITIALIZE STATE VARS
   let interval, timer, state = "stopped";
+  let countdownSound, doneSound;
 
   // ADD CLICK LISTENERS
   playEl.addEventListener("click", ()=>{
@@ -104,12 +110,12 @@ window.simpleIntervalTimer = ( settings={} ) => {
   const handleInterval = () => {
     if (state !== "stopped" ) {
       timer = timer - 1;
-      if ( timer <= 3 && timer > 0 && playSounds) {
-        countdownSound.play();
+      if ( timer <= 3  && timer > 0 && playSounds) {
+        sounds.play('countdownSound');
       }
       if (timer < 1) {
         if (playSounds) {
-          doneSound.play();
+          sounds.play('doneSound');
         }
         if(state === "preparing" || state === "resting" || restSeconds < 1) {
           parentEl.classList.remove('preparing');

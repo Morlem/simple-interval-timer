@@ -46,5 +46,12 @@ module.exports = {
       path: '../',
       filename: 'simple-interval-timer.zip',
     }),
+    new CopyWebpackPlugin([
+      {from: './simple-interval-timer.css', to:'../docs/'},
+      {from: './images/*', to:'../docs/'},
+      {from: './audio/*.mp3', to:'../docs/'},
+      {from: './dist/simple-interval-timer.min.js', to:'../docs/'},
+      {from: './simple-interval-timer.zip', to:'../docs/'},
+    ]),
   ]
 };
