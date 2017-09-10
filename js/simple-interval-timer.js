@@ -1,6 +1,7 @@
 import WebFont from 'webfontloader';
 import timerHTML from '../html/timer.html';
 
+
 window.simpleIntervalTimer = ( settings={} ) => {
   WebFont.load({
     google: { families: ['Roboto:300,700'] }
@@ -12,8 +13,12 @@ window.simpleIntervalTimer = ( settings={} ) => {
   let restSeconds = settings.restSeconds || 15;
   let rewindSeconds = settings.rewindSeconds || 10;
   const editable = !(settings.editable === false);
+  const playSounds = !(settings.playSounds === false);
   const showStopButton = !(settings.showStopButton === false);
   const prepareSeconds = Number.isInteger(settings.prepareSeconds) ? settings.prepareSeconds : 10;
+
+  const countdownSound = new Audio([require('../audio/blip.mp3')]);
+  const doneSound = new Audio([require('../audio/bip-bip-bip.mp3')]);
 
   // SETUP & GET DOM NODES
   let parentEl = document.getElementsByClassName(containerClass)[0];
@@ -99,7 +104,13 @@ window.simpleIntervalTimer = ( settings={} ) => {
   const handleInterval = () => {
     if (state !== "stopped" ) {
       timer = timer - 1;
+      if ( timer <= 3 && timer > 0 && playSounds) {
+        countdownSound.play();
+      }
       if (timer < 1) {
+        if (playSounds) {
+          doneSound.play();
+        }
         if(state === "preparing" || state === "resting" || restSeconds < 1) {
           parentEl.classList.remove('preparing');
           parentEl.classList.remove('resting');

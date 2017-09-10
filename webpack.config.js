@@ -21,6 +21,13 @@ module.exports = {
       {
         test: /\.(html)$/,
         loader: 'html-loader'
+      },
+      {
+        test: /\.(mp3)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
       }
     ]
   },
@@ -33,7 +40,7 @@ module.exports = {
    new CopyWebpackPlugin([
      {from: './demo.html'},
      {from: './simple-interval-timer.css'},
-     {from: './images/*'}
+     {from: './images/*'},
    ]),
    new ZipPlugin({
       path: '../',
