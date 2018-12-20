@@ -1,6 +1,6 @@
 # Simple-Interval-Timer
 
-## [Demos + Download](https://morlem.github.io/simple-interval-timer/)
+## [Demos + Download](https://brettlyne.github.io/simple-interval-timer/)
 
 ## Develop
 Clone repo
